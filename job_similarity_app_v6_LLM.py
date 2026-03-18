@@ -16,8 +16,8 @@ st.set_page_config(
 # ----------------------------------
 @st.cache_data
 def load_data():
-    results = pd.read_excel("job_similarity_output_v1_60-40.xlsx")
-    matrix = pd.read_excel("job_similarity_matrix_60-40.xlsx", index_col=0)
+    results = pd.read_excel("job_similarity_output_v1.xlsx")
+    matrix = pd.read_excel("job_similarity_matrix.xlsx", index_col=0)
     jobs_master = pd.read_csv("jobs_dataset.csv", encoding="latin1")
     
     
@@ -632,28 +632,6 @@ elif search_mode == "NLP Search":
     
 
 
-# ----------------------------------
-# MATRIX VIEW (JOB-SPECIFIC)
-# ----------------------------------
-with st.expander("🧮 Job-Specific Similarity Matrix View"):
-
-    matrix_job = st.selectbox(
-    "Select Job",
-    similarity_matrix.index.tolist(),
-    format_func=lambda x: f"{x} – {job_id_to_name.get(x, '')}"
-    )
-
-
-    matrix_view = (
-        similarity_matrix
-        .loc[[matrix_job]]
-        .T
-        .sort_values(by=matrix_job, ascending=False)
-        .rename(columns={matrix_job: "Similarity %"})
-    )
-
-    st.caption(f"Showing similarity scores for Job ID: {matrix_job}")
-    st.dataframe(matrix_view, use_container_width=True)
 
 #st.markdown("### 📥 Download Outputs")
 
