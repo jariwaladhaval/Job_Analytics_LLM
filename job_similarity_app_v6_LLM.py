@@ -16,7 +16,7 @@ st.set_page_config(
 # ----------------------------------
 @st.cache_data
 def load_data():
-    results = pd.read_excel("job_similarity_output_v1.xlsx")
+    results = pd.read_excel("job_similarity_output_V1.xlsx")
     matrix = pd.read_excel("job_similarity_matrix.xlsx", index_col=0)
     jobs_master = pd.read_csv("jobs_dataset.csv", encoding="latin1")
     
